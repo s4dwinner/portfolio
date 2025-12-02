@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Elhiouli | Offensive Security Specialist | Red Team Operator</title>
+    <meta name="description" content="Elite red teamer with 390+ TryHackMe rooms, Cisco Ethical Hacker cert, bug bounties, and automation mastery. Ready for penetration testing and security research roles.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #1E4D2F;
+            --bg-secondary: #255F38;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --accent: #00d4ff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Floating code letters */
+        .code-float {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.4; /* 40% as requested */
+        }
+        .code-float::before {
+            content: '010101 101010 001100 110011 000111 111000 100101 recon exploit chain osint bash python redteam';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-family: monospace;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+            animation: float 20s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(-45deg) translateY(0); }
+            100% { transform: translate(-50%, -50%) rotate(-45deg) translateY(-100vh); }
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--text-primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background: var(--accent);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: #00b8d4;
+            transform: scale(1.05);
+        }
+        .skills-bar {
+            background: var(--glass-bg);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .skills-progress {
+            height: 100%;
+            background: var(--accent);
+            transition: width 1s ease;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating code background -->
+    <div class="code-float"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Ahmed Elhiouli</h1>
+            <h2 class="h3 mb-4" style="color: var(--text-secondary);">Offensive Security Specialist | Red Team Operator</h2>
+            <p class="lead mb-4" style="color: var(--text-secondary);">Mastering the art of controlled exploitation to protect what matters.</p>
+            <p style="color: var(--text-secondary);">Self-taught red teamer with hundreds of hours of real-world reconnaissance, exploitation, and post-exploitation experience.</p>
+            <a href="#about" class="btn btn-primary mt-4">Explore My Arsenal</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card text-center">
+                        <h2 class="mb-4">About Me</h2>
+                        <p class="lead">From Morocco's digital frontiers, I've forged my path as an offensive security specialist. With 390+ offensive rooms conquered on TryHackMe—spanning the full red team lifecycle from reconnaissance to post-exploitation—I've built unbreakable skills in ethical exploitation.</p>
+                        <p>Cisco Certified Ethical Hacker, active bug bounty hunter (e.g., Optus Managed Bounty with professional Markdown PoCs), and automation wizard in Python & Bash for OSINT, data extraction, and custom tooling. My focus: discovering vulnerabilities responsibly and turning threats into defenses for enterprises and national security.</p>
+                        <p>Ready to deploy elite red team tactics on your side—let's secure the horizon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Arsenal Section -->
+    <section id="arsenal" class="py-5 bg-dark bg-opacity-25">
+        <div class="container">
+            <h2 class="text-center mb-5">Technical Arsenal</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Advanced Reconnaissance & Asset Discovery</h5>
+                        <p>Uncovering hidden networks and assets with precision mapping.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Web Application Exploitation Chains</h5>
+                        <p>Multi-stage breaches from initial access to full compromise.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Network Penetration & Lateral Movement</h5>
+                        <p>Navigating infrastructures with stealth and efficiency.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Privilege Escalation Techniques</h5>
+                        <p>Elevating access through kernel and userland mastery.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Custom Automation & Scripting (Python | Bash)</h5>
+                        <p>Scalable tools for OSINT, scraping, and breach automation.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Open-Source Intelligence (OSINT) Mastery</h5>
+                        <p>Extracting actionable intel from global data streams.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Post-Exploitation & Persistence Strategies</h5>
+                        <p>Maintaining footholds with evasion and exfiltration.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card">
+                        <h5>Secure Report Writing & Responsible Disclosure</h5>
+                        <p>Professional PoCs and communications for impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Achievements</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card text-center">
+                        <h5>390+ Offensive TryHackMe Rooms</h5>
+                        <p>Full red team path: recon to root access mastery.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card text-center">
+                        <h5>Cisco Ethical Hacker Certification</h5>
+                        <p>Validated expertise in ethical penetration testing.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card text-center">
+                        <h5>Active Bug Bounty Researcher</h5>
+                        <p>Live findings like Optus Bounty with Markdown PoCs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card text-center">
+                        <h5>High-Impact Python/Bash Tools</h5>
+                        <p>Custom automations for security research gigs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="glass-card text-center">
+                        <h5>Rapid-Learning Red Team Methodology</h5>
+                        <p>Adaptable chains from hunt to disclosure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-dark bg-opacity-25">
+        <div class="container">
+            <h2 class="text-center mb-5">Skills Breakdown</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h6>Penetration Testing</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 95%;"></div></div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Ethical Exploitation</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 98%;"></div></div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Web Scraping & OSINT</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 92%;"></div></div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Python Automation</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 90%;"></div></div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Bash/Linux Mastery</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 94%;"></div></div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h6>Red Team Tactics</h6>
+                    <div class="skills-bar"><div class="skills-progress" style="width: 97%;"></div></div>
+                </div>
+            </div>
+            <p class="text-center mt-4" style="color: var(--text-secondary);">Skills honed in the breach, deployed for defense.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="glass-card">
+                        <h2 class="mb-4">Let's Connect</h2>
+                        <p class="lead">Available for Red Team | Penetration Testing | Security Research Roles</p>
+                        <div class="mt-4">
+                            <a href="mailto:ahmed@example.com" class="btn btn-primary me-2 mb-2">Email</a>
+                            <a href="https://linkedin.com/in/yourprofile" class="btn btn-outline-light me-2 mb-2">LinkedIn</a>
+                            <a href="https://github.com/s4dwinner" class="btn btn-outline-light me-2 mb-2">GitHub</a>
+                            <a href="https://tryhackme.com/p/yourprofile" class="btn btn-outline-light">TryHackMe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
