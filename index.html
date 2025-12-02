@@ -9,25 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #1E4D2F;
-            --bg-secondary: #255F38;
+            --bg-top: #000428;
+            --bg-bottom: #004e92;
             --text-primary: #ffffff;
             --text-secondary: #e0e0e0;
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
             --accent: #00d4ff;
         }
+        * { box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary));
+            background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
             color: var(--text-primary);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             position: relative;
         }
-        /* Floating code letters */
-        .code-float {
+        /* Starry particles background */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
@@ -35,37 +36,66 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            opacity: 0.4; /* 40% as requested */
         }
-        .code-float::before {
-            content: '010101 101010 001100 110011 000111 111000 100101 recon exploit chain osint bash python redteam';
+        .star {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-family: monospace;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.3);
-            white-space: nowrap;
-            animation: float 20s linear infinite;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate;
         }
-        @keyframes float {
-            0% { transform: translate(-50%, -50%) rotate(-45deg) translateY(0); }
-            100% { transform: translate(-50%, -50%) rotate(-45deg) translateY(-100vh); }
+        @keyframes twinkle {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
-        .glass-card {
-            background: var(--glass-bg);
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background 0.3s;
         }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        nav.scrolled { background: rgba(0, 0, 0, 0.7); }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        .nav-links { display: flex; list-style: none; margin: 0; padding: 0; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; }
+        .hamburger span { width: 25px; height: 3px; background: var(--text-primary); margin: 3px 0; transition: 0.3s; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(0,0,0,0.9); flex-direction: column; padding: 1rem; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
+        }
+        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -73,61 +103,69 @@
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            animation: fadeIn 1s ease-out;
         }
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--text-primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .btn-primary {
-            background: var(--accent);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            color: #000;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .btn-primary:hover {
-            background: #00b8d4;
-            transform: scale(1.05);
-        }
-        .skills-bar {
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .hero h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(45deg, var(--text-primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-secondary); }
+        .hero p { max-width: 600px; margin: 0 auto 2rem; color: var(--text-secondary); }
+        .scroll-arrow { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+        /* Glass cards */
+        .glass-card {
             background: var(--glass-bg);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .skills-progress {
-            height: 100%;
-            background: var(--accent);
-            transition: width 1s ease;
-        }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-        }
+        .glass-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1); }
+        /* Sections */
+        section { padding: 5rem 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .skills-bar { background: var(--glass-bg); height: 8px; border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
+        .skills-progress { height: 100%; background: var(--accent); transition: width 1s; }
+        /* Responsive */
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } section { padding: 3rem 0; } }
     </style>
 </head>
 <body>
-    <!-- Floating code background -->
-    <div class="code-float"></div>
+    <!-- Starry background -->
+    <div class="stars" id="stars"></div>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">AE</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#arsenal">Arsenal</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
         <div>
             <h1>Ahmed Elhiouli</h1>
-            <h2 class="h3 mb-4" style="color: var(--text-secondary);">Offensive Security Specialist | Red Team Operator</h2>
-            <p class="lead mb-4" style="color: var(--text-secondary);">Mastering the art of controlled exploitation to protect what matters.</p>
-            <p style="color: var(--text-secondary);">Self-taught red teamer with hundreds of hours of real-world reconnaissance, exploitation, and post-exploitation experience.</p>
-            <a href="#about" class="btn btn-primary mt-4">Explore My Arsenal</a>
+            <h3 class="h3">Offensive Security Specialist | Red Team Operator</h3>
+            <p class="lead">Mastering the art of controlled exploitation to protect what matters.</p>
+            <p>Self-taught red teamer with hundreds of hours of real-world reconnaissance, exploitation, and post-exploitation experience.</p>
+            <a href="#about" class="btn btn-primary mt-4" style="background: var(--accent); border: none; padding: 12px 30px; border-radius: 50px; color: #000; font-weight: 600; text-decoration: none;">Explore Arsenal</a>
         </div>
+        <div class="scroll-arrow">↓</div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section id="about" class="py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -143,8 +181,8 @@
         </div>
     </section>
 
-    <!-- Technical Arsenal Section -->
-    <section id="arsenal" class="py-5 bg-dark bg-opacity-25">
+    <!-- Technical Arsenal -->
+    <section id="arsenal" class="py-5" style="background: rgba(0,0,0,0.2);">
         <div class="container">
             <h2 class="text-center mb-5">Technical Arsenal</h2>
             <div class="row">
@@ -154,6 +192,7 @@
                         <p>Uncovering hidden networks and assets with precision mapping.</p>
                     </div>
                 </div>
+                <!-- Add the other 7 cards exactly like in your previous version -->
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="glass-card">
                         <h5>Web Application Exploitation Chains</h5>
@@ -200,7 +239,7 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
+    <!-- Achievements (add your 5 cards here, same as before) -->
     <section id="achievements" class="py-5">
         <div class="container">
             <h2 class="text-center mb-5">Featured Achievements</h2>
@@ -239,8 +278,8 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-5 bg-dark bg-opacity-25">
+    <!-- Skills -->
+    <section id="skills" class="py-5" style="background: rgba(0,0,0,0.2);">
         <div class="container">
             <h2 class="text-center mb-5">Skills Breakdown</h2>
             <div class="row">
@@ -248,6 +287,7 @@
                     <h6>Penetration Testing</h6>
                     <div class="skills-bar"><div class="skills-progress" style="width: 95%;"></div></div>
                 </div>
+                <!-- Add the other 5 skills bars like before -->
                 <div class="col-md-6 mb-4">
                     <h6>Ethical Exploitation</h6>
                     <div class="skills-bar"><div class="skills-progress" style="width: 98%;"></div></div>
@@ -273,7 +313,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -282,7 +322,7 @@
                         <h2 class="mb-4">Let's Connect</h2>
                         <p class="lead">Available for Red Team | Penetration Testing | Security Research Roles</p>
                         <div class="mt-4">
-                            <a href="mailto:ahmed@example.com" class="btn btn-primary me-2 mb-2">Email</a>
+                            <a href="mailto:ahmed@example.com" class="btn btn-primary me-2 mb-2" style="background: var(--accent); border: none; color: #000;">Email</a>
                             <a href="https://linkedin.com/in/yourprofile" class="btn btn-outline-light me-2 mb-2">LinkedIn</a>
                             <a href="https://github.com/s4dwinner" class="btn btn-outline-light me-2 mb-2">GitHub</a>
                             <a href="https://tryhackme.com/p/yourprofile" class="btn btn-outline-light">TryHackMe</a>
@@ -295,13 +335,43 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Smooth scrolling for anchor links
+        // Star particles
+        function createStars() {
+            const stars = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                stars.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', e => {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
             });
         });
     </script>
